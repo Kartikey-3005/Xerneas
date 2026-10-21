@@ -50,7 +50,7 @@ export default function LangGraphVisualizer({
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <div>
           <h2 style={{ fontSize: '1.15rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <GitBranch size={20} color="#06b6d4" />
+            <GitBranch size={20} color="var(--jh-canvas)" />
             LangGraph State Machine Engine (TRD Section 5)
           </h2>
           <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -72,7 +72,7 @@ export default function LangGraphVisualizer({
       </div>
 
       {/* State Machine Nodes Pipeline */}
-      <div className="langgraph-container" style={{ background: 'rgba(7, 10, 16, 0.7)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-subtle)', marginBottom: '1.5rem' }}>
+      <div className="langgraph-container" style={{ background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-subtle)', marginBottom: '1.5rem' }}>
         {nodes.map((node, index) => {
           const status = getNodeStatus(node.id);
           const Icon = node.icon;
@@ -84,6 +84,12 @@ export default function LangGraphVisualizer({
           else if (status === 'FAILED') statusClass = 'failed';
           else if (status === 'REFLECTING') statusClass = 'reflecting';
 
+          const iconColor = 
+            status === 'PASSED' ? 'var(--accent-emerald)' : 
+            status === 'FAILED' ? 'var(--accent-rose)' : 
+            status === 'REFLECTING' ? 'var(--accent-amber)' : 
+            'var(--jh-canvas)';
+
           return (
             <React.Fragment key={node.id}>
               <div 
@@ -94,7 +100,7 @@ export default function LangGraphVisualizer({
                 }}
               >
                 <div className="node-header">
-                  <Icon size={16} color={status === 'PASSED' ? '#10b981' : status === 'FAILED' ? '#f43f5e' : status === 'REFLECTING' ? '#f59e0b' : '#06b6d4'} />
+                  <Icon size={16} color={iconColor} />
                   <span className="node-title">{node.label}</span>
                 </div>
                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
@@ -108,8 +114,8 @@ export default function LangGraphVisualizer({
                     fontFamily: 'var(--font-mono)', 
                     padding: '0.1rem 0.35rem', 
                     borderRadius: '4px',
-                    background: status === 'PASSED' ? 'rgba(16,185,129,0.2)' : status === 'FAILED' ? 'rgba(239,68,68,0.2)' : 'rgba(255,255,255,0.05)',
-                    color: status === 'PASSED' ? '#34d399' : status === 'FAILED' ? '#f87171' : 'var(--text-muted)'
+                    background: status === 'PASSED' ? 'rgba(202, 213, 189, 0.2)' : status === 'FAILED' ? 'rgba(201, 130, 130, 0.2)' : 'rgba(83, 83, 102, 0.2)',
+                    color: status === 'PASSED' ? 'var(--accent-emerald)' : status === 'FAILED' ? 'var(--accent-rose)' : 'var(--text-muted)'
                   }}>
                     {status}
                   </span>
@@ -128,11 +134,11 @@ export default function LangGraphVisualizer({
       </div>
 
       {/* State Condition Gate Rule Info Banner */}
-      <div style={{ background: 'rgba(99, 102, 241, 0.08)', border: '1px solid rgba(99, 102, 241, 0.25)', borderRadius: 'var(--radius-md)', padding: '0.85rem 1.25rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ background: 'rgba(83, 83, 102, 0.16)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-md)', padding: '0.85rem 1.25rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <ShieldCheck size={20} color="#818cf8" />
+          <ShieldCheck size={20} color="var(--jh-canvas)" />
           <div style={{ fontSize: '0.78rem' }}>
-            <strong style={{ color: '#c7d2fe' }}>Self-Correction State Transition Rule (TRD Sec 5):</strong>
+            <strong style={{ color: 'var(--text-primary)' }}>Self-Correction State Transition Rule (TRD Sec 5):</strong>
             <span style={{ color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
               If <code>sandbox_exit_code != 0</code> &amp; <code>retry_counter &lt; 3</code> &rarr; transition to <code>reflect_node</code> with full error traces. If <code>retry == 3</code> &rarr; abort auto-remediation &amp; trigger emergency alert.
             </span>
@@ -164,8 +170,8 @@ export default function LangGraphVisualizer({
                     style={{
                       padding: '0.65rem 0.85rem',
                       borderRadius: 'var(--radius-md)',
-                      background: isSelected ? 'rgba(6, 182, 212, 0.12)' : 'rgba(255, 255, 255, 0.02)',
-                      border: `1px solid ${isSelected ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+                      background: isSelected ? 'rgba(83, 83, 102, 0.28)' : 'transparent',
+                      border: `1px solid ${isSelected ? 'var(--border-accent)' : 'var(--border-subtle)'}`,
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
@@ -175,15 +181,15 @@ export default function LangGraphVisualizer({
                   >
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: isSelected ? '#38bdf8' : '#e2e8f0' }}>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: isSelected ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
                           {st.nodeName}
                         </span>
                         <span style={{ 
                           fontSize: '0.62rem', 
                           padding: '0.05rem 0.35rem', 
                           borderRadius: '3px',
-                          background: st.status === 'PASSED' ? 'rgba(16,185,129,0.2)' : st.status === 'FAILED' ? 'rgba(239,68,68,0.2)' : 'rgba(245,158,11,0.2)',
-                          color: st.status === 'PASSED' ? '#34d399' : st.status === 'FAILED' ? '#f87171' : '#fbbf24'
+                          background: st.status === 'PASSED' ? 'rgba(202, 213, 189, 0.2)' : st.status === 'FAILED' ? 'rgba(201, 130, 130, 0.2)' : 'rgba(214, 194, 158, 0.2)',
+                          color: st.status === 'PASSED' ? 'var(--accent-emerald)' : st.status === 'FAILED' ? 'var(--accent-rose)' : 'var(--accent-amber)'
                         }}>
                           {st.status}
                         </span>
