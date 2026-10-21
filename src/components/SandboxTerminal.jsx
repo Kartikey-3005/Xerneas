@@ -97,7 +97,7 @@ export default function SandboxTerminal({ activeScript, onTestScriptInSandbox })
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <h2 style={{ fontSize: '1.15rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Lock size={20} color="#10b981" />
+              <Lock size={20} color="var(--jh-canvas)" />
               Docker Ephemeral Sandbox &amp; AST Security Guardrail
             </h2>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -107,15 +107,15 @@ export default function SandboxTerminal({ activeScript, onTestScriptInSandbox })
 
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
             <span className="status-chip" title="Complete network egress restriction">
-              <ShieldCheck size={14} color="#10b981" />
+              <ShieldCheck size={14} color="var(--accent-emerald)" />
               Flag: --net=none
             </span>
             <span className="status-chip" title="Non-root execution context">
-              <Lock size={14} color="#06b6d4" />
+              <Lock size={14} color="var(--jh-canvas)" />
               Context: --user=1001
             </span>
             <span className="status-chip" title="Command timeout threshold">
-              <Clock size={14} color="#f59e0b" />
+              <Clock size={14} color="var(--accent-amber)" />
               Timeout: 15s limit
             </span>
           </div>
@@ -145,10 +145,10 @@ export default function SandboxTerminal({ activeScript, onTestScriptInSandbox })
             rows={10}
             style={{
               width: '100%',
-              background: '#04070d',
+              background: 'var(--bg-terminal)',
               border: '1px solid var(--border-medium)',
               borderRadius: 'var(--radius-md)',
-              color: '#e2e8f0',
+              color: 'var(--jh-canvas)',
               fontFamily: 'var(--font-mono)',
               fontSize: '0.78rem',
               padding: '0.75rem',
@@ -160,30 +160,30 @@ export default function SandboxTerminal({ activeScript, onTestScriptInSandbox })
 
           {/* AST Guardrail Status Card */}
           <div style={{
-            background: astAnalysis.isAllowed ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.12)',
-            border: `1px solid ${astAnalysis.isAllowed ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.5)'}`,
+            background: astAnalysis.isAllowed ? 'rgba(202, 213, 189, 0.15)' : 'rgba(201, 130, 130, 0.18)',
+            border: `1px solid ${astAnalysis.isAllowed ? 'rgba(202, 213, 189, 0.45)' : 'rgba(201, 130, 130, 0.5)'}`,
             borderRadius: 'var(--radius-md)',
             padding: '0.85rem 1rem',
             marginBottom: '1rem'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem' }}>
               {astAnalysis.isAllowed ? (
-                <ShieldCheck size={18} color="#10b981" />
+                <ShieldCheck size={18} color="var(--accent-emerald)" />
               ) : (
-                <AlertOctagon size={18} color="#ef4444" />
+                <AlertOctagon size={18} color="var(--accent-rose)" />
               )}
-              <strong style={{ fontSize: '0.82rem', color: astAnalysis.isAllowed ? '#34d399' : '#f87171' }}>
+              <strong style={{ fontSize: '0.82rem', color: astAnalysis.isAllowed ? 'var(--accent-emerald)' : 'var(--accent-rose)' }}>
                 {astAnalysis.isAllowed ? "AST Whitelist Approved" : "CRITICAL AST SECURITY EXCEPTION"}
               </strong>
             </div>
-            <div style={{ fontSize: '0.74rem', color: astAnalysis.isAllowed ? '#a7f3d0' : '#fca5a5' }}>
+            <div style={{ fontSize: '0.74rem', color: astAnalysis.isAllowed ? 'var(--text-secondary)' : 'var(--accent-rose)' }}>
               {astAnalysis.message}
             </div>
 
             {astAnalysis.violations.length > 0 && (
-              <div style={{ marginTop: '0.5rem', borderTop: '1px solid rgba(239, 68, 68, 0.3)', paddingTop: '0.5rem' }}>
+              <div style={{ marginTop: '0.5rem', borderTop: '1px solid rgba(201, 130, 130, 0.3)', paddingTop: '0.5rem' }}>
                 {astAnalysis.violations.map((v, i) => (
-                  <div key={i} style={{ fontSize: '0.7rem', color: '#f87171', fontFamily: 'var(--font-mono)' }}>
+                  <div key={i} style={{ fontSize: '0.7rem', color: 'var(--accent-rose)', fontFamily: 'var(--font-mono)' }}>
                     • Line {v.line}: {v.rule} &rarr; <code>{v.command}</code>
                   </div>
                 ))}
@@ -213,18 +213,18 @@ export default function SandboxTerminal({ activeScript, onTestScriptInSandbox })
             <div className="terminal-title">
               root@sandbox-ephemeral-alpine:~# (Isolated / PTY)
             </div>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontFamily: 'var(--font-mono)' }}>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
               15s timeout
             </div>
           </div>
           <div className="terminal-body" style={{ flex: 1, minHeight: '360px' }}>
             {terminalOutput.map((item, idx) => {
-              let color = '#94a3b8';
-              if (item.type === 'danger') color = '#f87171';
-              if (item.type === 'success' || item.type === 'exit0') color = '#34d399';
-              if (item.type === 'command') color = '#38bdf8';
-              if (item.type === 'stdout') color = '#e2e8f0';
-              if (item.type === 'ast') color = '#c084fc';
+              let color = 'var(--text-muted)';
+              if (item.type === 'danger') color = 'var(--accent-rose)';
+              if (item.type === 'success' || item.type === 'exit0') color = 'var(--accent-emerald)';
+              if (item.type === 'command') color = 'var(--jh-canvas)';
+              if (item.type === 'stdout') color = 'var(--text-primary)';
+              if (item.type === 'ast') color = 'var(--jh-slate)';
 
               return (
                 <div key={idx} style={{ color, marginBottom: '0.35rem', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', lineHeight: 1.4 }}>
@@ -233,7 +233,7 @@ export default function SandboxTerminal({ activeScript, onTestScriptInSandbox })
               );
             })}
             {isExecuting && (
-              <div style={{ color: '#38bdf8', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
+              <div style={{ color: 'var(--jh-canvas)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
                 <span className="pulse">▍</span> Sandboxing commands...
               </div>
             )}
