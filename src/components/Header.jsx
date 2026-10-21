@@ -9,7 +9,8 @@ import {
   Zap, 
   Layers, 
   Flame, 
-  SlidersHorizontal 
+  Sun,
+  Moon
 } from 'lucide-react';
 
 export default function Header({ 
@@ -18,7 +19,9 @@ export default function Header({
   onOpenChaosModal, 
   activeIncidentsCount, 
   kpis,
-  isSimulating 
+  isSimulating,
+  theme = 'charcoal',
+  setTheme
 }) {
   return (
     <header className="top-header">
@@ -26,7 +29,7 @@ export default function Header({
         {/* Brand Section */}
         <div className="brand-section">
           <div className="brand-logo-hex">
-            <Shield className="w-5 h-5 text-cyan-400" size={22} color="#06b6d4" />
+            <Shield size={22} color="currentColor" />
           </div>
           <div>
             <div className="brand-title">
@@ -46,23 +49,55 @@ export default function Header({
           </div>
 
           <div className="status-chip" title="ONNX Isolation Forest + DistilBERT (FR-02)">
-            <Cpu size={14} color="#6366f1" />
+            <Cpu size={14} color="var(--jh-slate)" />
             <span>ONNX Runtime: 3.2ms</span>
           </div>
 
           <div className="status-chip" title="Qdrant Vector DB 384d Embeddings (FR-03)">
-            <Layers size={14} color="#06b6d4" />
+            <Layers size={14} color="var(--text-secondary)" />
             <span>Qdrant RAG: Online</span>
           </div>
 
           <div className="status-chip" title="Ephemeral Docker Sandbox (--net=none) (FR-04)">
-            <Terminal size={14} color="#10b981" />
+            <Terminal size={14} color="var(--text-muted)" />
             <span>Sandbox: --net=none</span>
           </div>
         </div>
 
         {/* Operational Modes & Actions */}
         <div className="header-actions">
+          {/* Palette indicator pill */}
+          <div 
+            className="palette-preview-pill" 
+            title="Studio Palette: Charcoal (#1C1C1C), Canvas (#EAE6E0), Slate (#535366), White (#FFFFFF)"
+          >
+            <span className="palette-chip chip-charcoal" title="Charcoal #1C1C1C (Primary)"></span>
+            <span className="palette-chip chip-canvas" title="Canvas #EAE6E0 (Primary)"></span>
+            <span className="palette-chip chip-slate" title="Slate #535366 (Secondary)"></span>
+            <span className="palette-chip chip-white" title="White #FFFFFF (Secondary)"></span>
+          </div>
+
+          {/* Theme Switcher */}
+          {setTheme && (
+            <button
+              className="theme-toggle-btn"
+              onClick={() => setTheme(theme === 'charcoal' ? 'canvas' : 'charcoal')}
+              title={`Switch palette view (Currently: ${theme.toUpperCase()})`}
+            >
+              {theme === 'charcoal' ? (
+                <>
+                  <Sun size={13} />
+                  <span>Canvas</span>
+                </>
+              ) : (
+                <>
+                  <Moon size={13} />
+                  <span>Charcoal</span>
+                </>
+              )}
+            </button>
+          )}
+
           {/* Mode Selector */}
           <div className="mode-toggle-group" title="Governance & Blast-Radius Control (PRD Section 6)">
             <button 
@@ -102,7 +137,7 @@ export default function Header({
             <div className="kpi-target">Target: ≤ 15s (99.99% SLA)</div>
           </div>
           <div className="kpi-icon-wrap">
-            <Clock size={22} color="#10b981" />
+            <Clock size={22} color="var(--text-primary)" />
           </div>
         </div>
 
@@ -113,7 +148,7 @@ export default function Header({
             <div className="kpi-target">Target: &lt; 3 min (Baseline: 45m)</div>
           </div>
           <div className="kpi-icon-wrap">
-            <Zap size={22} color="#6366f1" />
+            <Zap size={22} color="var(--jh-slate)" />
           </div>
         </div>
 
@@ -124,7 +159,7 @@ export default function Header({
             <div className="kpi-target">Target: &gt; 94% (Isolation Forest)</div>
           </div>
           <div className="kpi-icon-wrap">
-            <Activity size={22} color="#f59e0b" />
+            <Activity size={22} color="var(--text-secondary)" />
           </div>
         </div>
 
@@ -135,7 +170,7 @@ export default function Header({
             <div className="kpi-target">100% Tested Live Execution</div>
           </div>
           <div className="kpi-icon-wrap">
-            <CheckCircle2 size={22} color="#f43f5e" />
+            <CheckCircle2 size={22} color="var(--text-muted)" />
           </div>
         </div>
       </div>
