@@ -27,11 +27,16 @@ import { inspectCommandAST } from './services/astGuardrail';
 import { INITIAL_INCIDENTS, INITIAL_AUDIT_LOGS } from './data/mockIncidents';
 
 export default function App() {
+  const [theme, setTheme] = useState('charcoal'); // 'charcoal' | 'canvas'
   const [activeTab, setActiveTab] = useState('telemetry'); // 'telemetry' | 'langgraph' | 'sandbox' | 'runbooks' | 'postmortem' | 'architecture'
   const [mode, setMode] = useState('AUTONOMOUS'); // 'SAFE' | 'AUTONOMOUS'
   const [isChaosModalOpen, setIsChaosModalOpen] = useState(false);
   const [incidents, setIncidents] = useState(INITIAL_INCIDENTS);
   const [activeIncident, setActiveIncident] = useState(null);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   // KPIs
   const [kpis, setKpis] = useState({
@@ -320,6 +325,8 @@ export default function App() {
         activeIncidentsCount={activeIncident ? 1 : 0}
         kpis={kpis}
         isSimulating={isGraphRunning}
+        theme={theme}
+        setTheme={setTheme}
       />
 
       {/* Navigation Tabs */}
@@ -331,7 +338,7 @@ export default function App() {
           <Activity size={16} />
           Live SRE Cockpit
           {anomalyResult.isAnomalous && (
-            <span className="nav-tab-badge" style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#f87171' }}>
+            <span className="nav-tab-badge" style={{ background: 'rgba(201, 130, 130, 0.25)', color: 'var(--accent-rose)' }}>
               Anomaly &gt; 0.85
             </span>
           )}
@@ -344,7 +351,7 @@ export default function App() {
           <GitBranch size={16} />
           LangGraph State Machine
           {isGraphRunning && (
-            <span className="nav-tab-badge" style={{ background: 'rgba(6, 182, 212, 0.2)', color: '#38bdf8' }}>
+            <span className="nav-tab-badge" style={{ background: 'rgba(83, 83, 102, 0.4)', color: 'var(--text-primary)' }}>
               Executing
             </span>
           )}
