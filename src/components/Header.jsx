@@ -31,7 +31,6 @@ export default function Header({
           <div>
             <div className="brand-title">
               XERNEAS
-              <span className="brand-badge">AIOps Sentinel v1.0</span>
             </div>
             <div className="sub-tagline">
               Autonomous SRE Engine • Closed-Loop ML Anomaly Detection & Sandbox Remediation
