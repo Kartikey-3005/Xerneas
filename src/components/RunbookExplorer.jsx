@@ -29,7 +29,7 @@ export default function RunbookExplorer() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <h2 style={{ fontSize: '1.15rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Database size={20} color="#06b6d4" />
+              <Database size={20} color="var(--jh-canvas)" />
               Qdrant Vector DB Runbooks &amp; GenAI RAG (TRD Section 4)
             </h2>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -39,11 +39,11 @@ export default function RunbookExplorer() {
 
           <div style={{ display: 'flex', gap: '0.5rem' }}>
             <span className="status-chip">
-              <Layers size={14} color="#6366f1" />
+              <Layers size={14} color="var(--jh-slate)" />
               Collection: sentinel_runbooks_384d
             </span>
             <span className="status-chip">
-              <CheckCircle size={14} color="#10b981" />
+              <CheckCircle size={14} color="var(--accent-emerald)" />
               Index: HNSW Cosine
             </span>
           </div>
@@ -62,11 +62,11 @@ export default function RunbookExplorer() {
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                background: '#04070d',
+                background: 'var(--bg-terminal)',
                 border: '1px solid var(--border-medium)',
                 borderRadius: 'var(--radius-md)',
                 padding: '0.55rem 0.75rem 0.55rem 2.2rem',
-                color: '#fff',
+                color: 'var(--text-primary)',
                 fontSize: '0.8rem',
                 outline: 'none'
               }}
@@ -83,8 +83,8 @@ export default function RunbookExplorer() {
                   style={{
                     padding: '0.9rem',
                     borderRadius: 'var(--radius-md)',
-                    background: isSelected ? 'rgba(6, 182, 212, 0.12)' : 'rgba(15, 23, 42, 0.6)',
-                    border: `1px solid ${isSelected ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+                    background: isSelected ? 'rgba(83, 83, 102, 0.28)' : 'var(--bg-card)',
+                    border: `1px solid ${isSelected ? 'var(--border-accent)' : 'var(--border-subtle)'}`,
                     cursor: 'pointer',
                     transition: 'all 0.2s ease'
                   }}
@@ -93,11 +93,11 @@ export default function RunbookExplorer() {
                     <span className="distil-tag distil-routine" style={{ fontSize: '0.62rem' }}>
                       {rb.category}
                     </span>
-                    <span style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', color: '#38bdf8' }}>
+                    <span style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', color: 'var(--jh-canvas)' }}>
                       Sim: {(rb.similarityScore * 100).toFixed(1)}%
                     </span>
                   </div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.35rem' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                     {rb.title}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
@@ -113,7 +113,7 @@ export default function RunbookExplorer() {
         <div className="glass-panel" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
             <div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#f8fafc' }}>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                 {selectedRunbook.title}
               </div>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
@@ -158,7 +158,7 @@ export default function RunbookExplorer() {
               <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
                 Deterministic Rollback Procedure
               </div>
-              <pre className="code-view" style={{ maxHeight: '80px', background: '#0a0d14' }}>
+              <pre className="code-view" style={{ maxHeight: '80px', background: 'var(--bg-terminal)' }}>
 {selectedRunbook.rollbackScript}
               </pre>
             </div>
@@ -171,9 +171,9 @@ export default function RunbookExplorer() {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', marginBottom: '1rem' }}>
                 {selectedRunbook.embeddingVectorSample.map((val, idx) => (
-                  <div key={idx} style={{ background: '#05070c', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '0.5rem', textAlign: 'center' }}>
+                  <div key={idx} style={{ background: 'var(--bg-terminal)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '0.5rem', textAlign: 'center' }}>
                     <div style={{ fontSize: '0.62rem', color: 'var(--text-muted)' }}>d_{idx + 1}</div>
-                    <div style={{ fontSize: '0.78rem', fontFamily: 'var(--font-mono)', color: val >= 0 ? '#34d399' : '#f87171' }}>
+                    <div style={{ fontSize: '0.78rem', fontFamily: 'var(--font-mono)', color: val >= 0 ? 'var(--accent-emerald)' : 'var(--accent-rose)' }}>
                       {val.toFixed(4)}
                     </div>
                   </div>
