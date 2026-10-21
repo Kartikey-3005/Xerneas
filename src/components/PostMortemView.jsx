@@ -73,7 +73,7 @@ ${inc.remediationScript}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <h2 style={{ fontSize: '1.15rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <FileText size={20} color="#06b6d4" />
+              <FileText size={20} color="var(--jh-canvas)" />
               Incident Post-Mortems &amp; PostgreSQL Relational State (TRD Section 7)
             </h2>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -127,21 +127,21 @@ ${inc.remediationScript}
                   style={{
                     padding: '0.9rem',
                     borderRadius: 'var(--radius-md)',
-                    background: isSelected ? 'rgba(6, 182, 212, 0.12)' : 'rgba(15, 23, 42, 0.6)',
-                    border: `1px solid ${isSelected ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+                    background: isSelected ? 'rgba(83, 83, 102, 0.28)' : 'var(--bg-card)',
+                    border: `1px solid ${isSelected ? 'var(--border-accent)' : 'var(--border-subtle)'}`,
                     cursor: 'pointer',
                     transition: 'all 0.2s ease'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
-                    <span style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', color: '#38bdf8' }}>
+                    <span style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', color: 'var(--jh-canvas)' }}>
                       {inc.id}
                     </span>
                     <span className="distil-tag distil-routine" style={{ fontSize: '0.62rem' }}>
                       {inc.status}
                     </span>
                   </div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.3rem' }}>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
                     {inc.title}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
@@ -158,11 +158,11 @@ ${inc.remediationScript}
           {activeSubView === 'postmortem' && (
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
-                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#f8fafc' }}>
+                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                   Generated Post-Mortem (Markdown)
                 </span>
                 <button className="btn btn-outline" style={{ fontSize: '0.72rem', padding: '0.25rem 0.6rem' }} onClick={copyToClipboard}>
-                  {copied ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
+                  {copied ? <Check size={14} color="var(--accent-emerald)" /> : <Copy size={14} />}
                   {copied ? "Copied!" : "Copy Markdown"}
                 </button>
               </div>
@@ -175,43 +175,43 @@ ${inc.remediationScript}
 
           {activeSubView === 'slack' && (
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.75rem' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
                 Slack Interactive Card Preview (Safe Mode Blast-Radius Control)
               </div>
 
               {/* Slack Card Simulation */}
               <div style={{
-                background: '#1a1d21',
-                border: '1px solid #383f45',
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-medium)',
                 borderRadius: '8px',
                 padding: '1.25rem',
-                borderLeft: '4px solid #f59e0b',
+                borderLeft: '4px solid var(--jh-canvas)',
                 fontFamily: 'system-ui, -apple-system, sans-serif'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                  <span style={{ background: '#06b6d4', width: '20px', height: '20px', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', color: '#000', fontWeight: 'bold' }}>X</span>
-                  <strong style={{ fontSize: '0.88rem', color: '#fff' }}>Xerneas Autonomous SRE Sentinel</strong>
-                  <span style={{ fontSize: '0.7rem', color: '#9ca3af' }}>APP • 2m ago</span>
+                  <span style={{ background: 'var(--jh-canvas)', width: '22px', height: '22px', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', color: 'var(--jh-charcoal)', fontWeight: 'bold' }}>X</span>
+                  <strong style={{ fontSize: '0.88rem', color: 'var(--text-primary)' }}>Xerneas Autonomous SRE Sentinel</strong>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>APP • 2m ago</span>
                 </div>
 
-                <div style={{ fontSize: '0.9rem', color: '#e5e7eb', marginBottom: '0.75rem', fontWeight: 600 }}>
+                <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '0.75rem', fontWeight: 600 }}>
                   🚨 Incident Triage Required: {selectedIncident.title}
                 </div>
 
-                <div style={{ fontSize: '0.78rem', color: '#9ca3af', marginBottom: '0.75rem' }}>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
                   <strong>Affected Entities:</strong> {selectedIncident.entities.join(', ')}<br />
                   <strong>Isolation Forest Score:</strong> {selectedIncident.score} (Severity: High)<br />
                   <strong>Sandbox Dry-Run:</strong> ✅ PASSED in Docker (Exit code: 0, 0 faults)
                 </div>
 
-                <div style={{ background: '#0d1117', border: '1px solid #30363d', borderRadius: '6px', padding: '0.75rem', marginBottom: '1rem', fontFamily: 'monospace', fontSize: '0.74rem', color: '#7ee787' }}>
+                <div style={{ background: 'var(--bg-terminal)', border: '1px solid var(--border-subtle)', borderRadius: '6px', padding: '0.75rem', marginBottom: '1rem', fontFamily: 'monospace', fontSize: '0.74rem', color: 'var(--accent-emerald)' }}>
                   {selectedIncident.remediationScript}
                 </div>
 
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                   <button 
                     className="btn btn-primary" 
-                    style={{ background: '#2ea44f', borderColor: '#2ea44f', fontSize: '0.75rem', padding: '0.4rem 0.85rem' }}
+                    style={{ fontSize: '0.75rem', padding: '0.4rem 0.85rem' }}
                     onClick={() => {
                       setApprovedInSlack(true);
                       if (onApproveSlackRemediation) onApproveSlackRemediation(selectedIncident);
@@ -230,7 +230,7 @@ ${inc.remediationScript}
 
           {activeSubView === 'postgres' && (
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.75rem' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
                 PostgreSQL Relational State Records (TRD Section 7 Schema)
               </div>
 
