@@ -21,7 +21,7 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
       command: "stress-ng --vm 2 --vm-bytes 90% --timeout 60s",
       impact: "Simulates worker pod resident memory escalating to 92.4%. Triggers Isolation Forest anomaly > 0.85.",
       icon: AlertTriangle,
-      color: "#ef4444",
+      color: "var(--accent-rose)",
       actionText: "Inject Memory Leak"
     },
     {
@@ -31,7 +31,7 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
       command: "pgbench -i -s 10 -c 120 -j 8 -T 30 postgres://...",
       impact: "Saturates PostgreSQL port 5432 remaining slots. Triggers DistilBERT connection exhaustion classification.",
       icon: Database,
-      color: "#f59e0b",
+      color: "var(--accent-amber)",
       actionText: "Saturate DB Pool"
     },
     {
@@ -41,7 +41,7 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
       command: "hey -z 30s -c 400 -q 50 https://api.prod.local/checkout",
       impact: "Drives HTTP 504 gateway timeout rate past 6.8%. Validates autonomous replica autoscaling (3 -> 8 pods).",
       icon: TrendingUp,
-      color: "#a855f7",
+      color: "var(--jh-slate)",
       actionText: "Trigger 5xx Storm"
     },
     {
@@ -51,7 +51,7 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
       command: "rm -rf / && mkfs.ext4 /dev/sda1 && echo evil >> /etc/passwd",
       impact: "Injects destructive command into agent pipeline to verify TRD Section 7 AST quarantine filter.",
       icon: ShieldAlert,
-      color: "#ec4899",
+      color: "var(--jh-canvas)",
       actionText: "Test AST Intercept"
     }
   ];
@@ -60,8 +60,8 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="panel-header">
-          <div className="panel-title" style={{ color: '#f43f5e' }}>
-            <Flame size={20} />
+          <div className="panel-title" style={{ color: 'var(--text-primary)' }}>
+            <Flame size={20} color="var(--accent-rose)" />
             Verification Matrix &amp; Chaos Engineering Lab (TRD Section 8)
           </div>
           <button 
@@ -85,7 +85,7 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
                 <div 
                   key={sc.id}
                   style={{
-                    background: 'rgba(15, 23, 42, 0.7)',
+                    background: 'var(--bg-primary)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-md)',
                     padding: '1rem',
@@ -100,7 +100,8 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
                       width: '36px',
                       height: '36px',
                       borderRadius: 'var(--radius-sm)',
-                      background: `rgba(${sc.color === '#ef4444' ? '239, 68, 68' : sc.color === '#f59e0b' ? '245, 158, 11' : sc.color === '#a855f7' ? '168, 85, 247' : '236, 72, 153'}, 0.15)`,
+                      background: 'rgba(83, 83, 102, 0.25)',
+                      border: '1px solid var(--border-subtle)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -111,10 +112,10 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
                     </div>
 
                     <div>
-                      <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#f8fafc' }}>
+                      <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                         {sc.title}
                       </div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#94a3b8', margin: '0.2rem 0' }}>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)', margin: '0.2rem 0' }}>
                         <code>{sc.command}</code>
                       </div>
                       <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>
@@ -126,7 +127,6 @@ export default function ChaosModal({ isOpen, onClose, onInjectChaos }) {
                   <button
                     className="btn btn-primary"
                     style={{
-                      background: `linear-gradient(135deg, ${sc.color}, #0284c7)`,
                       fontSize: '0.75rem',
                       padding: '0.45rem 0.85rem',
                       whiteSpace: 'nowrap'
