@@ -9,10 +9,12 @@ import {
   Network, 
   Flame, 
   AlertTriangle,
-  RotateCcw
+  RotateCcw,
+  Compass
 } from 'lucide-react';
 
 import Header from './components/Header';
+import SentinelLanding from './components/SentinelLanding';
 import TelemetryView from './components/TelemetryView';
 import LangGraphVisualizer from './components/LangGraphVisualizer';
 import SandboxTerminal from './components/SandboxTerminal';
@@ -28,7 +30,7 @@ import { INITIAL_INCIDENTS, INITIAL_AUDIT_LOGS } from './data/mockIncidents';
 
 export default function App() {
   const [theme, setTheme] = useState('charcoal'); // 'charcoal' | 'canvas'
-  const [activeTab, setActiveTab] = useState('telemetry'); // 'telemetry' | 'langgraph' | 'sandbox' | 'runbooks' | 'postmortem' | 'architecture'
+  const [activeTab, setActiveTab] = useState('landing'); // 'landing' | 'telemetry' | 'langgraph' | 'sandbox' | 'runbooks' | 'postmortem' | 'architecture'
   const [mode, setMode] = useState('AUTONOMOUS'); // 'SAFE' | 'AUTONOMOUS'
   const [isChaosModalOpen, setIsChaosModalOpen] = useState(false);
   const [incidents, setIncidents] = useState(INITIAL_INCIDENTS);
@@ -317,138 +319,159 @@ export default function App() {
 
   return (
     <div className="app-container">
-      {/* HUD Header */}
-      <Header
-        mode={mode}
-        setMode={setMode}
-        onOpenChaosModal={() => setIsChaosModalOpen(true)}
-        activeIncidentsCount={activeIncident ? 1 : 0}
-        kpis={kpis}
-        isSimulating={isGraphRunning}
-        theme={theme}
-        setTheme={setTheme}
-      />
-
-      {/* Navigation Tabs */}
-      <nav className="nav-bar">
-        <button 
-          className={`nav-tab ${activeTab === 'telemetry' ? 'active' : ''}`}
-          onClick={() => setActiveTab('telemetry')}
-        >
-          <Activity size={16} />
-          Live SRE Cockpit
-          {anomalyResult.isAnomalous && (
-            <span className="nav-tab-badge" style={{ background: 'rgba(201, 130, 130, 0.25)', color: 'var(--accent-rose)' }}>
-              Anomaly &gt; 0.85
-            </span>
-          )}
-        </button>
-
-        <button 
-          className={`nav-tab ${activeTab === 'langgraph' ? 'active' : ''}`}
-          onClick={() => setActiveTab('langgraph')}
-        >
-          <GitBranch size={16} />
-          LangGraph State Machine
-          {isGraphRunning && (
-            <span className="nav-tab-badge" style={{ background: 'rgba(83, 83, 102, 0.4)', color: 'var(--text-primary)' }}>
-              Executing
-            </span>
-          )}
-        </button>
-
-        <button 
-          className={`nav-tab ${activeTab === 'sandbox' ? 'active' : ''}`}
-          onClick={() => setActiveTab('sandbox')}
-        >
-          <Terminal size={16} />
-          Docker Sandbox &amp; AST Guardrail
-        </button>
-
-        <button 
-          className={`nav-tab ${activeTab === 'runbooks' ? 'active' : ''}`}
-          onClick={() => setActiveTab('runbooks')}
-        >
-          <Database size={16} />
-          Qdrant Vector DB &amp; RAG
-        </button>
-
-        <button 
-          className={`nav-tab ${activeTab === 'postmortem' ? 'active' : ''}`}
-          onClick={() => setActiveTab('postmortem')}
-        >
-          <FileText size={16} />
-          Post-Mortems &amp; Governance
-        </button>
-
-        <button 
-          className={`nav-tab ${activeTab === 'architecture' ? 'active' : ''}`}
-          onClick={() => setActiveTab('architecture')}
-        >
-          <Network size={16} />
-          Distributed Topology Blueprint
-        </button>
-
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <button 
-            className="btn btn-outline" 
-            style={{ fontSize: '0.72rem', padding: '0.25rem 0.6rem' }}
-            onClick={handleResetBaseline}
-            title="Restore telemetry to nominal baseline"
-          >
-            <RotateCcw size={13} />
-            Reset Baseline
-          </button>
-        </div>
-      </nav>
-
-      {/* Main Viewport */}
-      <main className="main-viewport">
-        {activeTab === 'telemetry' && (
-          <TelemetryView
-            telemetryHistory={telemetryHistory}
-            currentMetrics={currentMetrics}
-            anomalyResult={anomalyResult}
-            logs={logs}
-            activeIncident={activeIncident}
-            onViewIncident={() => setActiveTab('langgraph')}
+      {activeTab === 'landing' ? (
+        <SentinelLanding
+          onEnterCockpit={() => setActiveTab('telemetry')}
+          currentMetrics={currentMetrics}
+          anomalyResult={anomalyResult}
+          mode={mode}
+          setMode={setMode}
+          kpis={kpis}
+        />
+      ) : (
+        <>
+          {/* HUD Header */}
+          <Header
+            mode={mode}
+            setMode={setMode}
+            onOpenChaosModal={() => setIsChaosModalOpen(true)}
+            activeIncidentsCount={activeIncident ? 1 : 0}
+            kpis={kpis}
+            isSimulating={isGraphRunning}
+            theme={theme}
+            setTheme={setTheme}
           />
-        )}
 
-        {activeTab === 'langgraph' && (
-          <LangGraphVisualizer
-            executionTrace={executionTrace}
-            isRunning={isGraphRunning}
-            activeIncident={activeIncident}
-            onRunSelfCorrectionDemo={handleRunSelfCorrectionDemo}
-          />
-        )}
+          {/* Navigation Tabs */}
+          <nav className="nav-bar">
+            <button 
+              className={`nav-tab ${activeTab === 'landing' ? 'active' : ''}`}
+              onClick={() => setActiveTab('landing')}
+            >
+              <Compass size={16} />
+              Sentinel Landing
+            </button>
 
-        {activeTab === 'sandbox' && (
-          <SandboxTerminal
-            activeScript={null}
-            onTestScriptInSandbox={() => {}}
-          />
-        )}
+            <button 
+              className={`nav-tab ${activeTab === 'telemetry' ? 'active' : ''}`}
+              onClick={() => setActiveTab('telemetry')}
+            >
+              <Activity size={16} />
+              Live SRE Cockpit
+              {anomalyResult.isAnomalous && (
+                <span className="nav-tab-badge" style={{ background: 'rgba(201, 130, 130, 0.25)', color: 'var(--accent-rose)' }}>
+                  Anomaly &gt; 0.85
+                </span>
+              )}
+            </button>
 
-        {activeTab === 'runbooks' && (
-          <RunbookExplorer />
-        )}
+            <button 
+              className={`nav-tab ${activeTab === 'langgraph' ? 'active' : ''}`}
+              onClick={() => setActiveTab('langgraph')}
+            >
+              <GitBranch size={16} />
+              LangGraph State Machine
+              {isGraphRunning && (
+                <span className="nav-tab-badge" style={{ background: 'rgba(83, 83, 102, 0.4)', color: 'var(--text-primary)' }}>
+                  Executing
+                </span>
+              )}
+            </button>
 
-        {activeTab === 'postmortem' && (
-          <PostMortemView
-            incidents={incidents}
-            onApproveSlackRemediation={(inc) => {
-              confetti({ particleCount: 60, spread: 60 });
-              setTimeout(() => handleResetBaseline(), 1200);
-            }}
-          />
-        )}
+            <button 
+              className={`nav-tab ${activeTab === 'sandbox' ? 'active' : ''}`}
+              onClick={() => setActiveTab('sandbox')}
+            >
+              <Terminal size={16} />
+              Docker Sandbox &amp; AST Guardrail
+            </button>
 
-        {activeTab === 'architecture' && (
-          <ArchitectureView />
-        )}
-      </main>
+            <button 
+              className={`nav-tab ${activeTab === 'runbooks' ? 'active' : ''}`}
+              onClick={() => setActiveTab('runbooks')}
+            >
+              <Database size={16} />
+              Qdrant Vector DB &amp; RAG
+            </button>
+
+            <button 
+              className={`nav-tab ${activeTab === 'postmortem' ? 'active' : ''}`}
+              onClick={() => setActiveTab('postmortem')}
+            >
+              <FileText size={16} />
+              Post-Mortems &amp; Governance
+            </button>
+
+            <button 
+              className={`nav-tab ${activeTab === 'architecture' ? 'active' : ''}`}
+              onClick={() => setActiveTab('architecture')}
+            >
+              <Network size={16} />
+              Distributed Topology Blueprint
+            </button>
+
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <button 
+                className="btn btn-outline" 
+                style={{ fontSize: '0.72rem', padding: '0.25rem 0.6rem' }}
+                onClick={handleResetBaseline}
+                title="Restore telemetry to nominal baseline"
+              >
+                <RotateCcw size={13} />
+                Reset Baseline
+              </button>
+            </div>
+          </nav>
+
+          {/* Main Viewport */}
+          <main className="main-viewport">
+            {activeTab === 'telemetry' && (
+              <TelemetryView
+                telemetryHistory={telemetryHistory}
+                currentMetrics={currentMetrics}
+                anomalyResult={anomalyResult}
+                logs={logs}
+                activeIncident={activeIncident}
+                onViewIncident={() => setActiveTab('langgraph')}
+              />
+            )}
+
+            {activeTab === 'langgraph' && (
+              <LangGraphVisualizer
+                executionTrace={executionTrace}
+                isRunning={isGraphRunning}
+                activeIncident={activeIncident}
+                onRunSelfCorrectionDemo={handleRunSelfCorrectionDemo}
+              />
+            )}
+
+            {activeTab === 'sandbox' && (
+              <SandboxTerminal
+                activeScript={null}
+                onTestScriptInSandbox={() => {}}
+              />
+            )}
+
+            {activeTab === 'runbooks' && (
+              <RunbookExplorer />
+            )}
+
+            {activeTab === 'postmortem' && (
+              <PostMortemView
+                incidents={incidents}
+                onApproveSlackRemediation={(inc) => {
+                  confetti({ particleCount: 60, spread: 60 });
+                  setTimeout(() => handleResetBaseline(), 1200);
+                }}
+              />
+            )}
+
+            {activeTab === 'architecture' && (
+              <ArchitectureView />
+            )}
+          </main>
+        </>
+      )}
 
       {/* Chaos Engineering Modal */}
       <ChaosModal
