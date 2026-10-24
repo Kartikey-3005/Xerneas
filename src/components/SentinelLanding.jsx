@@ -20,7 +20,7 @@ function ParticleGlobe() {
 
     const setupCanvas = () => {
       const rect = canvas.getBoundingClientRect();
-      const size = Math.max(rect.width || 140, rect.height || 140);
+      const size = Math.max(rect.width || 130, rect.height || 130);
       canvas.width = size * dpr;
       canvas.height = size * dpr;
     };
@@ -177,7 +177,7 @@ function StarburstIcon() {
 }
 
 // ============================================================================
-// Sentinel Landing Page — Strict Recreation of Reference Image 1 & 2
+// Sentinel Landing Page — Exact 1:1 Recreation of Reference Image 1
 // ============================================================================
 export default function SentinelLanding({ onEnterCockpit }) {
   // Global keyboard shortcut to launch Cockpit via [C] key
@@ -199,14 +199,14 @@ export default function SentinelLanding({ onEnterCockpit }) {
     >
 
       {/* =====================================================================
-          MAIN CANVAS: Modular Unit Grid strictly scaled to viewport
+          MAIN CANVAS: Modular Unit Grid strictly matching Reference Image 1
           ===================================================================== */}
-      <main className="flex-1 w-full max-w-[1480px] mx-auto flex items-center justify-center my-auto">
+      <main className="flex-1 w-full max-w-[1540px] mx-auto flex items-center justify-center my-auto">
         <div
           className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-4 sm:gap-5 xl:gap-6"
           style={{
             // Base unit tile size dynamically computed from viewport height
-            '--tile-size': 'clamp(115px, 16vh, 165px)',
+            '--tile-size': 'clamp(110px, 15.5vh, 160px)',
             '--gap': '16px',
             '--radius': '32px',
           }}
@@ -222,12 +222,12 @@ export default function SentinelLanding({ onEnterCockpit }) {
 
             {/* TOP WHITE GEOMETRIC PANEL (Spans Rows 1 & 2) */}
             <div
-              className="w-full bg-[#FFFFFF] text-black rounded-[36px] flex items-center px-8 sm:px-12 lg:px-16 xl:px-20 relative z-10"
+              className="w-full bg-[#FFFFFF] text-black rounded-[40px] rounded-br-none flex items-center px-8 sm:px-12 lg:px-16 xl:px-20 relative z-10"
               style={{
                 height: 'calc(2 * var(--tile-size) + var(--gap))',
               }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold tracking-tight text-neutral-950 leading-[1.08] max-w-2xl select-text">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[54px] xl:text-[62px] 2xl:text-[70px] font-bold tracking-tight text-[#000000] leading-[1.08] max-w-xl select-text">
                 Technology<br />
                 that connects.<br />
                 Solutions<br />
@@ -245,7 +245,7 @@ export default function SentinelLanding({ onEnterCockpit }) {
             >
 
               {/* LOWER-LEFT COPY: Negative Space Cutout */}
-              <div className="flex-1 flex flex-col justify-between py-2 sm:py-3 pr-6 z-10">
+              <div className="flex-1 flex flex-col justify-between py-2 sm:py-4 pr-6 z-10">
                 <p className="text-sm sm:text-[15px] xl:text-base text-[#888888] leading-relaxed max-w-md font-normal">
                   We build intelligent systems<br />
                   that empower people, simplify<br />
@@ -257,11 +257,11 @@ export default function SentinelLanding({ onEnterCockpit }) {
                   <button
                     id="discover-more-btn"
                     onClick={onEnterCockpit}
-                    className="group inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white pb-1 border-b border-white/60 hover:border-white transition-all cursor-pointer"
+                    className="group inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white pb-0.5 border-b border-white/60 hover:border-white transition-all cursor-pointer"
                   >
                     <span>Discover more</span>
                     <ArrowUpRight
-                      size={18}
+                      size={16}
                       className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </button>
@@ -273,9 +273,9 @@ export default function SentinelLanding({ onEnterCockpit }) {
                 className="relative flex-shrink-0"
                 style={{ width: 'var(--tile-size)' }}
               >
-                {/* Continuous White Leg: Sits in Row 3 and seamlessly extends upwards to join the Top Block */}
+                {/* Continuous White Leg: Sits in Row 3 and seamlessly joins the Top Block */}
                 <div
-                  className="w-full bg-[#FFFFFF] rounded-b-[32px] relative z-10"
+                  className="w-full bg-[#FFFFFF] rounded-b-[36px] relative z-10"
                   style={{
                     height: 'var(--tile-size)',
                     marginTop: 'calc(-1 * var(--gap))',
@@ -284,15 +284,15 @@ export default function SentinelLanding({ onEnterCockpit }) {
                 >
                   {/* CONCAVE / INVERTED FILLET: Smooth organic curve bridging Left Cutout and Stepped Leg */}
                   <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
+                    width="36"
+                    height="36"
+                    viewBox="0 0 36 36"
                     fill="none"
-                    className="absolute -left-8 top-0 pointer-events-none select-none"
-                    style={{ width: '32px', height: '32px' }}
+                    className="absolute -left-9 top-0 pointer-events-none select-none"
+                    style={{ width: '36px', height: '36px' }}
                   >
                     <path
-                      d="M 0 0 H 32 V 32 C 32 14.33 17.67 0 0 0 Z"
+                      d="M 0 0 H 36 V 36 C 36 16.12 19.88 0 0 0 Z"
                       fill="#FFFFFF"
                     />
                   </svg>
@@ -305,22 +305,27 @@ export default function SentinelLanding({ onEnterCockpit }) {
 
           {/* =================================================================
               RIGHT SIDE: Asymmetrical Modular Grid (Reference Image 1)
-              2 Columns × 4 Rows
+              3 Columns × 4 Rows
+              - Col 1: Intelligence (R1), Particle Globe (R2), Connection (R3)
+              - Col 2: White Tile (R2), White Tile (R4)
+              - Col 3: Arrow Tile (R1), Impact (R3)
               ================================================================= */}
           <div
-            className="flex-shrink-0 grid grid-cols-2 gap-[var(--gap)]"
+            className="flex-shrink-0 grid grid-cols-3 gap-[var(--gap)]"
             style={{
-              width: 'calc(2 * var(--tile-size) + var(--gap))',
+              width: 'calc(3 * var(--tile-size) + 2 * var(--gap))',
+              height: 'calc(4 * var(--tile-size) + 3 * var(--gap))',
             }}
           >
 
-            {/* ROW 1: Left = INTELLIGENCE BLOCK, Right = Arrow Tile (White) */}
+            {/* ROW 1 */}
+            {/* Col 1, Row 1: INTELLIGENCE BLOCK */}
             <div
-              className="flex flex-col justify-center pr-2"
+              className="flex flex-col justify-center pr-1"
               style={{ height: 'var(--tile-size)' }}
             >
               <span className="text-white/60 text-base sm:text-lg font-light leading-none">+</span>
-              <h3 className="text-white text-sm sm:text-base xl:text-lg font-bold mt-1.5 tracking-tight">
+              <h3 className="text-white text-sm sm:text-base font-bold mt-1 tracking-tight">
                 Intelligence
               </h3>
               <p className="text-[#888888] text-xs sm:text-[13px] mt-1 leading-snug">
@@ -330,6 +335,10 @@ export default function SentinelLanding({ onEnterCockpit }) {
               </p>
             </div>
 
+            {/* Col 2, Row 1: Empty Black Space */}
+            <div style={{ height: 'var(--tile-size)' }} />
+
+            {/* Col 3, Row 1: ARROW TILE (White Squircle with Diagonal Arrow) */}
             <button
               id="cockpit-arrow-tile"
               onClick={onEnterCockpit}
@@ -338,13 +347,14 @@ export default function SentinelLanding({ onEnterCockpit }) {
               title="Launch Cockpit"
             >
               <ArrowUpRight
-                size={36}
+                size={34}
                 strokeWidth={2.4}
                 className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               />
             </button>
 
-            {/* ROW 2: Left = CENTER VISUAL (Particle Globe), Right = Solid White Squircle Tile */}
+            {/* ROW 2 */}
+            {/* Col 1, Row 2: PARTICLE GLOBE (Black Rounded Tile) */}
             <div
               className="aspect-square rounded-[32px] bg-[#0c0c0e] border border-white/10 p-2 flex items-center justify-center overflow-hidden hover:border-white/30 hover:scale-[1.02] transition-all duration-300"
               style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
@@ -352,41 +362,23 @@ export default function SentinelLanding({ onEnterCockpit }) {
               <ParticleGlobe />
             </div>
 
+            {/* Col 2, Row 2: SOLID WHITE TILE */}
             <div
               className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
               style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
             />
 
-            {/* ROW 3: Left = Solid White Squircle Tile, Right = IMPACT BLOCK */}
-            <div
-              className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
-              style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
-            />
+            {/* Col 3, Row 2: Empty Black Space */}
+            <div style={{ height: 'var(--tile-size)' }} />
 
+            {/* ROW 3 */}
+            {/* Col 1, Row 3: CONNECTION BLOCK */}
             <div
-              className="flex flex-col justify-center pl-2"
-              style={{ height: 'var(--tile-size)' }}
-            >
-              <div className="mb-1.5">
-                <StarburstIcon />
-              </div>
-              <h3 className="text-white text-sm sm:text-base xl:text-lg font-bold tracking-tight">
-                Impact
-              </h3>
-              <p className="text-[#888888] text-xs sm:text-[13px] mt-1 leading-snug">
-                Creating sustainable<br />
-                value for business<br />
-                and society.
-              </p>
-            </div>
-
-            {/* ROW 4: Left = CONNECTION BLOCK, Right = Solid White Squircle Tile */}
-            <div
-              className="flex flex-col justify-center pr-2"
+              className="flex flex-col justify-center pr-1"
               style={{ height: 'var(--tile-size)' }}
             >
               <span className="text-white/60 text-base sm:text-lg font-light leading-none">+</span>
-              <h3 className="text-white text-sm sm:text-base xl:text-lg font-bold mt-1.5 tracking-tight">
+              <h3 className="text-white text-sm sm:text-base font-bold mt-1 tracking-tight">
                 Connection
               </h3>
               <p className="text-[#888888] text-xs sm:text-[13px] mt-1 leading-snug">
@@ -396,10 +388,39 @@ export default function SentinelLanding({ onEnterCockpit }) {
               </p>
             </div>
 
+            {/* Col 2, Row 3: Empty Black Space */}
+            <div style={{ height: 'var(--tile-size)' }} />
+
+            {/* Col 3, Row 3: IMPACT BLOCK */}
+            <div
+              className="flex flex-col justify-center pl-1"
+              style={{ height: 'var(--tile-size)' }}
+            >
+              <div className="mb-1">
+                <StarburstIcon />
+              </div>
+              <h3 className="text-white text-sm sm:text-base font-bold tracking-tight">
+                Impact
+              </h3>
+              <p className="text-[#888888] text-xs sm:text-[13px] mt-1 leading-snug">
+                Creating sustainable<br />
+                value for business<br />
+                and society.
+              </p>
+            </div>
+
+            {/* ROW 4 */}
+            {/* Col 1, Row 4: Empty Black Space */}
+            <div style={{ height: 'var(--tile-size)' }} />
+
+            {/* Col 2, Row 4: SOLID WHITE TILE */}
             <div
               className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
               style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
             />
+
+            {/* Col 3, Row 4: Empty Black Space */}
+            <div style={{ height: 'var(--tile-size)' }} />
 
           </div>
 
@@ -407,7 +428,7 @@ export default function SentinelLanding({ onEnterCockpit }) {
       </main>
 
       {/* =====================================================================
-          FOOTER: Low-contrast monospaced labels (Image 2)
+          FOOTER: Low-contrast monospaced labels (Reference Image 2)
           Left: XERNEAS // ARCHITECTURE
           Center: PRESS [C] OR CLICK ARROW TO ENTER
           Right: AUTONOMOUS ENGINE
