@@ -180,24 +180,17 @@ export default function SentinelLanding({ onEnterCockpit }) {
                 className="w-full bg-white text-black rounded-[36px] sm:rounded-[44px] lg:rounded-[52px] px-10 sm:px-14 lg:px-16 xl:px-20 py-12 sm:py-14 lg:py-16 shadow-[0_24px_60px_rgba(0,0,0,0.6)] flex flex-col justify-center"
                 style={{ minHeight: '420px' }}
               >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[60px] xl:text-[68px] 2xl:text-[76px] font-bold tracking-tight text-neutral-950 leading-[1.08] max-w-2xl select-text">
-                  Technology<br />
-                  that connects.<br />
-                  Solutions<br />
-                  that last.
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[72px] xl:text-[84px] 2xl:text-[96px] font-bold tracking-tight text-neutral-950 leading-none select-text">
+                  XERNEAS
                 </h1>
               </div>
             </div>
 
             {/* Bottom-Left Descriptive Micro-copy & Discover Link */}
             <div className="mt-6 lg:mt-5 max-w-md">
-              <p className="text-[13px] sm:text-[14px] xl:text-[15px] text-neutral-400 leading-relaxed font-normal">
-                We build intelligent systems that empower people, simplify complexity, and drive real impact in a connected world.
-              </p>
-
               <button
                 onClick={onEnterCockpit}
-                className="mt-4 group inline-flex items-center gap-2 text-[13px] xl:text-[14px] font-medium text-white pb-1 border-b border-white/60 hover:border-white transition-all cursor-pointer"
+                className="group inline-flex items-center gap-2 text-[13px] xl:text-[14px] font-medium text-white pb-1 border-b border-white/60 hover:border-white transition-all cursor-pointer"
               >
                 <span>Discover more</span>
                 <ArrowUpRight
@@ -246,11 +239,8 @@ export default function SentinelLanding({ onEnterCockpit }) {
                 <ParticleGlobe />
               </div>
 
-              {/* ROW 2: Right = Connected White Rounded Tile */}
-              <div className="w-full aspect-square rounded-[20px] xl:rounded-[26px] bg-white transition-transform duration-300 hover:scale-[1.02] shadow-sm" />
-
-              {/* ROW 3: Left = "+ Connection" Feature */}
-              <div className="flex flex-col justify-center pr-1">
+              {/* ROW 2: Right = "+ Connection" Feature */}
+              <div className="flex flex-col justify-center pl-1">
                 <span className="text-white/60 text-base font-light leading-none">+</span>
                 <h3 className="text-white text-sm xl:text-base font-semibold mt-1 tracking-tight">
                   Connection
@@ -260,14 +250,8 @@ export default function SentinelLanding({ onEnterCockpit }) {
                 </p>
               </div>
 
-              {/* ROW 3: Right = Connected White Rounded Tile */}
-              <div className="w-full aspect-square rounded-[20px] xl:rounded-[26px] bg-white transition-transform duration-300 hover:scale-[1.02] shadow-sm" />
-
-              {/* ROW 4: Left = Connected White Rounded Tile */}
-              <div className="w-full aspect-square rounded-[20px] xl:rounded-[26px] bg-white transition-transform duration-300 hover:scale-[1.02] shadow-sm" />
-
-              {/* ROW 4: Right = "+ Impact" with Radial Starburst */}
-              <div className="flex flex-col justify-center pl-1">
+              {/* ROW 3: Left = "+ Impact" with Radial Starburst */}
+              <div className="flex flex-col justify-center pr-1">
                 <div className="mb-1">
                   <StarburstIcon />
                 </div>
@@ -278,6 +262,15 @@ export default function SentinelLanding({ onEnterCockpit }) {
                   Creating sustainable value for business and society.
                 </p>
               </div>
+
+              {/* ROW 3: Right = Connected White Rounded Tile */}
+              <div className="w-full aspect-square rounded-[20px] xl:rounded-[26px] bg-white transition-transform duration-300 hover:scale-[1.02] shadow-sm" />
+
+              {/* ROW 4: Left = Connected White Rounded Tile */}
+              <div className="w-full aspect-square rounded-[20px] xl:rounded-[26px] bg-white transition-transform duration-300 hover:scale-[1.02] shadow-sm" />
+
+              {/* ROW 4: Right = Connected White Rounded Tile */}
+              <div className="w-full aspect-square rounded-[20px] xl:rounded-[26px] bg-white transition-transform duration-300 hover:scale-[1.02] shadow-sm" />
 
             </div>
           </div>
