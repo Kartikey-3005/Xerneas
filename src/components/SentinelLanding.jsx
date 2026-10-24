@@ -177,7 +177,7 @@ function StarburstIcon() {
 }
 
 // ============================================================================
-// Sentinel Landing Page — Strict Visual Replication of References
+// Sentinel Landing Page — Strict Recreation of Reference Image 1 & 2
 // ============================================================================
 export default function SentinelLanding({ onEnterCockpit }) {
   // Global keyboard shortcut to launch Cockpit via [C] key
@@ -193,39 +193,45 @@ export default function SentinelLanding({ onEnterCockpit }) {
   }, [onEnterCockpit]);
 
   return (
-    <div className="h-screen max-h-screen w-full bg-[#000000] text-white font-sans overflow-hidden flex flex-col justify-between px-6 sm:px-10 lg:px-14 xl:px-20 pt-6 sm:pt-8 pb-14 select-none selection:bg-white selection:text-black">
+    <div
+      id="sentinel-landing-page"
+      className="h-screen max-h-screen w-full bg-[#000000] text-white font-sans overflow-hidden flex flex-col justify-between px-6 sm:px-10 lg:px-14 xl:px-20 pt-6 sm:pt-8 pb-14 select-none selection:bg-white selection:text-black"
+    >
 
       {/* =====================================================================
-          MAIN CANVAS: Modular Unit Grid (Strict 4-Row System)
+          MAIN CANVAS: Modular Unit Grid strictly scaled to viewport
           ===================================================================== */}
       <main className="flex-1 w-full max-w-[1480px] mx-auto flex items-center justify-center my-auto">
         <div
           className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-4 sm:gap-5 xl:gap-6"
           style={{
             // Base unit tile size dynamically computed from viewport height
-            '--tile-size': 'clamp(110px, 15.5vh, 160px)',
+            '--tile-size': 'clamp(115px, 16vh, 165px)',
             '--gap': '16px',
             '--radius': '32px',
           }}
         >
 
           {/* =================================================================
-              LEFT HERO SECTION: Interlocking Puzzle Shape + Black Cutout
-              Top: Connected White block containing "XERNEAS" (spans Rows 1 & 2)
-              Bottom-Right: White stepped-down leg (spans Row 3)
-              Bottom-Left: Negative space cutout for description & CTA (Rows 3 & 4)
+              LEFT SIDE: Large White Geometric Panel with Stepped Silhouette
+              Top: Headline (Rows 1 & 2)
+              Right: White Stepped Leg (Row 3) with Inverted Concave Fillet
+              Bottom-Left: Lower-left copy & Discover more link (Rows 3 & 4)
               ================================================================= */}
           <div className="flex-1 flex flex-col justify-between relative min-w-0">
 
-            {/* TOP WHITE CONNECTED SECTION (Spans Rows 1 & 2) */}
+            {/* TOP WHITE GEOMETRIC PANEL (Spans Rows 1 & 2) */}
             <div
-              className="w-full bg-[#FFFFFF] text-black rounded-[36px] flex items-center px-8 sm:px-12 lg:px-14 xl:px-16 relative z-10"
+              className="w-full bg-[#FFFFFF] text-black rounded-[36px] flex items-center px-8 sm:px-12 lg:px-16 xl:px-20 relative z-10"
               style={{
                 height: 'calc(2 * var(--tile-size) + var(--gap))',
               }}
             >
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[88px] 2xl:text-[98px] font-black tracking-[-0.04em] text-[#000000] leading-none select-text">
-                XERNEAS
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold tracking-tight text-neutral-950 leading-[1.08] max-w-2xl select-text">
+                Technology<br />
+                that connects.<br />
+                Solutions<br />
+                that last.
               </h1>
             </div>
 
@@ -249,6 +255,7 @@ export default function SentinelLanding({ onEnterCockpit }) {
 
                 <div className="pt-4">
                   <button
+                    id="discover-more-btn"
                     onClick={onEnterCockpit}
                     className="group inline-flex items-center gap-2 text-sm sm:text-base font-medium text-white pb-1 border-b border-white/60 hover:border-white transition-all cursor-pointer"
                   >
@@ -275,7 +282,7 @@ export default function SentinelLanding({ onEnterCockpit }) {
                     paddingTop: 'var(--gap)',
                   }}
                 >
-                  {/* CONCAVE / INVERTED FILLETS: Smooth organic curve bridging Left Cutout and Stepped Leg */}
+                  {/* CONCAVE / INVERTED FILLET: Smooth organic curve bridging Left Cutout and Stepped Leg */}
                   <svg
                     width="32"
                     height="32"
@@ -297,7 +304,8 @@ export default function SentinelLanding({ onEnterCockpit }) {
           </div>
 
           {/* =================================================================
-              RIGHT-SIDE INTERLOCKING BENTO MODULES (2-Column Grid × 4 Rows)
+              RIGHT SIDE: Asymmetrical Modular Grid (Reference Image 1)
+              2 Columns × 4 Rows
               ================================================================= */}
           <div
             className="flex-shrink-0 grid grid-cols-2 gap-[var(--gap)]"
@@ -323,6 +331,7 @@ export default function SentinelLanding({ onEnterCockpit }) {
             </div>
 
             <button
+              id="cockpit-arrow-tile"
               onClick={onEnterCockpit}
               className="group aspect-square rounded-[32px] bg-[#FFFFFF] text-black flex items-center justify-center hover:scale-[1.03] active:scale-95 transition-transform duration-300 cursor-pointer"
               style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
@@ -335,7 +344,7 @@ export default function SentinelLanding({ onEnterCockpit }) {
               />
             </button>
 
-            {/* ROW 2: Left = CENTER VISUAL (Particle Globe), Right = CONNECTION BLOCK */}
+            {/* ROW 2: Left = CENTER VISUAL (Particle Globe), Right = Solid White Squircle Tile */}
             <div
               className="aspect-square rounded-[32px] bg-[#0c0c0e] border border-white/10 p-2 flex items-center justify-center overflow-hidden hover:border-white/30 hover:scale-[1.02] transition-all duration-300"
               style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
@@ -344,23 +353,18 @@ export default function SentinelLanding({ onEnterCockpit }) {
             </div>
 
             <div
-              className="flex flex-col justify-center pl-2"
-              style={{ height: 'var(--tile-size)' }}
-            >
-              <span className="text-white/60 text-base sm:text-lg font-light leading-none">+</span>
-              <h3 className="text-white text-sm sm:text-base xl:text-lg font-bold mt-1.5 tracking-tight">
-                Connection
-              </h3>
-              <p className="text-[#888888] text-xs sm:text-[13px] mt-1 leading-snug">
-                Bridging people,<br />
-                data and ideas<br />
-                seamlessly.
-              </p>
-            </div>
+              className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
+              style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
+            />
 
-            {/* ROW 3: Left = IMPACT BLOCK, Right = White Squircle Tile */}
+            {/* ROW 3: Left = Solid White Squircle Tile, Right = IMPACT BLOCK */}
             <div
-              className="flex flex-col justify-center pr-2"
+              className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
+              style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
+            />
+
+            <div
+              className="flex flex-col justify-center pl-2"
               style={{ height: 'var(--tile-size)' }}
             >
               <div className="mb-1.5">
@@ -376,16 +380,22 @@ export default function SentinelLanding({ onEnterCockpit }) {
               </p>
             </div>
 
+            {/* ROW 4: Left = CONNECTION BLOCK, Right = Solid White Squircle Tile */}
             <div
-              className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
-              style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
-            />
+              className="flex flex-col justify-center pr-2"
+              style={{ height: 'var(--tile-size)' }}
+            >
+              <span className="text-white/60 text-base sm:text-lg font-light leading-none">+</span>
+              <h3 className="text-white text-sm sm:text-base xl:text-lg font-bold mt-1.5 tracking-tight">
+                Connection
+              </h3>
+              <p className="text-[#888888] text-xs sm:text-[13px] mt-1 leading-snug">
+                Bridging people,<br />
+                data and ideas<br />
+                seamlessly.
+              </p>
+            </div>
 
-            {/* ROW 4: Two Solid White Squircle Tiles Side-by-Side */}
-            <div
-              className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
-              style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
-            />
             <div
               className="aspect-square rounded-[32px] bg-[#FFFFFF] hover:scale-[1.03] transition-transform duration-300"
               style={{ width: 'var(--tile-size)', height: 'var(--tile-size)' }}
@@ -397,7 +407,7 @@ export default function SentinelLanding({ onEnterCockpit }) {
       </main>
 
       {/* =====================================================================
-          FOOTER: Tiny, low-contrast, uppercase monospaced labels
+          FOOTER: Low-contrast monospaced labels (Image 2)
           Left: XERNEAS // ARCHITECTURE
           Center: PRESS [C] OR CLICK ARROW TO ENTER
           Right: AUTONOMOUS ENGINE
