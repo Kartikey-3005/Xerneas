@@ -41,9 +41,11 @@ export default function LiveKpiTickerSection() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight font-exo mb-6">
           Live Key Performance Indicators
         </h2>
+        <br></br>
         <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
           High-frequency reliability metrics quantified in production: from sub-second Isolation Forest detection to automated, zero-blast-radius self-healing.
         </p>
+        <br></br>
       </div>
 
       {/* ── Minimalist Monochromatic HUD Cards ── */}

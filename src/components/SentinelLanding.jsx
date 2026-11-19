@@ -153,6 +153,8 @@ export default function SentinelLanding({ onEnterCockpit }) {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight font-exo">
             Live Automation Loops
           </h2>
+          <br></br>
+          <br></br>
         </div>
 
         <div className="w-full max-w-6xl mx-auto flex justify-center">

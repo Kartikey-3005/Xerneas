@@ -24,7 +24,7 @@ export default function TelemetryView({
   const chartWidth = 320;
   const chartHeight = 85;
 
-  const renderSparkline = (metricKey, maxVal = 100, strokeColor = "var(--jh-canvas)", fillColor = "rgba(234, 230, 224, 0.15)") => {
+  const renderSparkline = (metricKey, maxVal = 100, strokeColor = "#FFFFFF", fillColor = "rgba(255, 255, 255, 0.15)") => {
     if (!telemetryHistory || telemetryHistory.length === 0) return null;
 
     const points = telemetryHistory.map((item, index) => {
@@ -56,7 +56,7 @@ export default function TelemetryView({
       {anomalyResult.isAnomalous && (
         <div className="alert-strip alert-danger">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <AlertTriangle size={20} color="var(--accent-rose)" />
+            <AlertTriangle size={20} color="#FFFFFF" />
             <div>
               <strong>PRE-CRASH TELEMETRY ANOMALY DETECTED (Score: {anomalyResult.score} &gt; 0.85 Threshold)</strong>
               <div style={{ fontSize: '0.78rem', opacity: 0.9 }}>
@@ -78,14 +78,14 @@ export default function TelemetryView({
         <div className="glass-panel metric-chart-card">
           <div className="chart-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Cpu size={16} color="var(--jh-canvas)" />
+              <Cpu size={16} color="#FFFFFF" />
               <span className="chart-metric-title">Kernel &amp; User CPU Utilization</span>
             </div>
-            <span className="chart-current-val" style={{ color: currentMetrics.cpu_usage > 80 ? 'var(--accent-rose)' : 'var(--text-primary)' }}>
+            <span className="chart-current-val" style={{ color: currentMetrics.cpu_usage > 80 ? '#660000' : '#FFFFFF' }}>
               {currentMetrics.cpu_usage.toFixed(1)}%
             </span>
           </div>
-          {renderSparkline('cpu_usage', 100, currentMetrics.cpu_usage > 80 ? 'var(--accent-rose)' : 'var(--jh-canvas)')}
+          {renderSparkline('cpu_usage', 100, currentMetrics.cpu_usage > 80 ? '#660000' : '#FFFFFF')}
           <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.4rem', display: 'flex', justifyContent: 'space-between' }}>
             <span>Window: 60s (5s sample intervals)</span>
             <span>Rolling Avg: {((currentMetrics.cpu_usage + 5) * 0.95).toFixed(1)}%</span>
@@ -96,14 +96,14 @@ export default function TelemetryView({
         <div className="glass-panel metric-chart-card">
           <div className="chart-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Database size={16} color="var(--jh-slate)" />
+              <Database size={16} color="#FFFFFF" />
               <span className="chart-metric-title">Resident Set Size (RSS) Memory</span>
             </div>
-            <span className="chart-current-val" style={{ color: currentMetrics.memory_rss > 85 ? 'var(--accent-rose)' : 'var(--text-primary)' }}>
+            <span className="chart-current-val" style={{ color: currentMetrics.memory_rss > 85 ? '#660000' : '#FFFFFF' }}>
               {currentMetrics.memory_rss.toFixed(1)}%
             </span>
           </div>
-          {renderSparkline('memory_rss', 100, currentMetrics.memory_rss > 85 ? 'var(--accent-rose)' : 'var(--jh-slate)')}
+          {renderSparkline('memory_rss', 100, currentMetrics.memory_rss > 85 ? '#660000' : '#FFFFFF')}
           <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.4rem', display: 'flex', justifyContent: 'space-between' }}>
             <span>Cgroup Limit: 2048Mi</span>
             <span>Allocated: {((currentMetrics.memory_rss / 100) * 2048).toFixed(0)} Mi</span>
@@ -114,14 +114,14 @@ export default function TelemetryView({
         <div className="glass-panel metric-chart-card">
           <div className="chart-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Activity size={16} color="var(--accent-emerald)" />
+              <Activity size={16} color="#FFFFFF" />
               <span className="chart-metric-title">I/O Wait Latency</span>
             </div>
-            <span className="chart-current-val" style={{ color: currentMetrics.io_wait > 18 ? 'var(--accent-amber)' : 'var(--accent-emerald)' }}>
+            <span className="chart-current-val" style={{ color: currentMetrics.io_wait > 18 ? '#660000' : '#FFFFFF' }}>
               {currentMetrics.io_wait.toFixed(1)}ms
             </span>
           </div>
-          {renderSparkline('io_wait', 35, currentMetrics.io_wait > 18 ? 'var(--accent-amber)' : 'var(--accent-emerald)')}
+          {renderSparkline('io_wait', 35, currentMetrics.io_wait > 18 ? '#660000' : '#FFFFFF')}
           <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.4rem', display: 'flex', justifyContent: 'space-between' }}>
             <span>Block device queue: normal</span>
             <span>p99 Latency: 3.4ms</span>
@@ -132,14 +132,14 @@ export default function TelemetryView({
         <div className="glass-panel metric-chart-card">
           <div className="chart-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <TrendingUp size={16} color="var(--accent-amber)" />
+              <TrendingUp size={16} color="#FFFFFF" />
               <span className="chart-metric-title">TX Network &amp; 5xx Error Rate</span>
             </div>
-            <span className="chart-current-val" style={{ color: currentMetrics.tx_error_rate > 3.0 ? 'var(--accent-rose)' : 'var(--accent-amber)' }}>
+            <span className="chart-current-val" style={{ color: currentMetrics.tx_error_rate > 3.0 ? '#660000' : '#FFFFFF' }}>
               {currentMetrics.tx_error_rate.toFixed(2)}%
             </span>
           </div>
-          {renderSparkline('tx_error_rate', 10, currentMetrics.tx_error_rate > 3.0 ? 'var(--accent-rose)' : 'var(--accent-amber)')}
+          {renderSparkline('tx_error_rate', 10, currentMetrics.tx_error_rate > 3.0 ? '#660000' : '#FFFFFF')}
           <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.4rem', display: 'flex', justifyContent: 'space-between' }}>
             <span>Ingress HTTP Gateway</span>
             <span>Target: &lt; 0.05%</span>
@@ -153,7 +153,7 @@ export default function TelemetryView({
         <div className="glass-panel">
           <div className="panel-header">
             <div className="panel-title">
-              <Sparkles size={18} color="var(--jh-canvas)" />
+              <Sparkles size={18} color="#FFFFFF" />
               Tier 1: Isolation Forest Multivariate Engine
             </div>
             <span className="brand-badge">
@@ -170,20 +170,20 @@ export default function TelemetryView({
                   fontSize: '2.5rem', 
                   fontFamily: 'var(--font-mono)', 
                   fontWeight: 800,
-                  color: anomalyResult.isAnomalous ? 'var(--accent-rose)' : 'var(--accent-emerald)'
+                  color: anomalyResult.isAnomalous ? '#660000' : '#FFFFFF'
                 }}>
                   {anomalyResult.score}
                 </div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Triage Trigger Threshold</div>
-                <div style={{ fontSize: '1.25rem', fontFamily: 'var(--font-mono)', color: 'var(--accent-amber)', fontWeight: 700 }}>
+                <div style={{ fontSize: '1.25rem', fontFamily: 'var(--font-mono)', color: '#FFFFFF', fontWeight: 700 }}>
                   &gt; 0.850
                 </div>
                 <span className="brand-badge" style={{
-                  background: anomalyResult.isAnomalous ? 'rgba(201, 130, 130, 0.2)' : 'rgba(202, 213, 189, 0.2)',
-                  color: anomalyResult.isAnomalous ? 'var(--accent-rose)' : 'var(--accent-emerald)',
-                  borderColor: anomalyResult.isAnomalous ? 'var(--accent-rose)' : 'var(--accent-emerald)'
+                  background: anomalyResult.isAnomalous ? 'rgba(102, 0, 0, 0.35)' : 'rgba(255, 255, 255, 0.1)',
+                  color: '#FFFFFF',
+                  borderColor: anomalyResult.isAnomalous ? '#660000' : 'rgba(255, 255, 255, 0.3)'
                 }}>
                   {anomalyResult.isAnomalous ? 'TRIAGE ACTIVE' : 'NOMINAL BASELINE'}
                 </span>
@@ -194,16 +194,16 @@ export default function TelemetryView({
             <div style={{ marginBottom: '1.5rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: '0.3rem' }}>
                 <span>0.00 (Normal)</span>
-                <span style={{ color: 'var(--accent-amber)' }}>0.85 (Threshold)</span>
-                <span>1.00 (Failure)</span>
+                <span style={{ color: '#FFFFFF' }}>0.85 (Threshold)</span>
+                <span style={{ color: '#660000' }}>1.00 (Failure)</span>
               </div>
-              <div style={{ height: '8px', background: 'rgba(83, 83, 102, 0.25)', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
+              <div style={{ height: '8px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
                 <div style={{
                   height: '100%',
                   width: `${Math.min(100, anomalyResult.score * 100)}%`,
                   background: anomalyResult.isAnomalous 
-                    ? 'linear-gradient(90deg, var(--accent-amber), var(--accent-rose))' 
-                    : 'linear-gradient(90deg, var(--jh-slate), var(--jh-canvas))',
+                    ? 'linear-gradient(90deg, #FFFFFF, #660000)' 
+                    : 'linear-gradient(90deg, #660000, #FFFFFF)',
                   transition: 'width 0.4s ease'
                 }} />
                 {/* 0.85 line */}
@@ -213,8 +213,8 @@ export default function TelemetryView({
                   bottom: 0,
                   left: '85%',
                   width: '2px',
-                  background: 'var(--accent-amber)',
-                  boxShadow: '0 0 4px var(--accent-amber)'
+                  background: '#660000',
+                  boxShadow: '0 0 6px #660000'
                 }} />
               </div>
             </div>
@@ -251,8 +251,8 @@ export default function TelemetryView({
             <div className="terminal-title">
               Tier 2: DistilBERT NLP Stream (LogHub Fine-Tuned)
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.7rem', color: 'var(--accent-emerald)' }}>
-              <Radio size={12} className="pulse" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.7rem', color: '#FFFFFF' }}>
+              <Radio size={12} className="pulse" color="#FFFFFF" />
               LIVE INGEST
             </div>
           </div>

@@ -32,9 +32,8 @@ export default function RagRunbookSearchSection() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight font-exo mb-6">
           Interactive RAG Runbook Search
         </h2>
-        <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          Search incident symptoms across curated Kubernetes &amp; database architectures. Qdrant HNSW vector index matches remediation scripts in sub-milliseconds with semantic confidence scoring.
-        </p>
+        <br></br>
+        <br></br>
       </div>
 
       {/* ── Main Command Palette Box with Strict Monochromatic Palette ── */}
