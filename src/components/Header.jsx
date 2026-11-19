@@ -26,40 +26,25 @@ export default function Header({
   return (
     <header className="top-header">
       <div className="header-top-row">
-        {/* Brand Section */}
-        <div className="brand-section">
-          <div className="brand-logo-hex">
-            <Shield size={22} color="currentColor" />
-          </div>
-          <div>
-            <div className="brand-title">
-              XERNEAS
-            </div>
-            <div className="sub-tagline">
-              Autonomous SRE Engine • Closed-Loop ML Anomaly Detection & Sandbox Remediation
-            </div>
-          </div>
-        </div>
-
         {/* System Component Statuses */}
         <div className="system-statuses">
           <div className="status-chip" title="FastAPI + Redis Stream Buffer (FR-01)">
-            <span className="status-dot pulse"></span>
+            <span className="status-dot pulse" style={{ background: '#FFFFFF', boxShadow: '0 0 8px #FFFFFF' }}></span>
             <span>Redis Stream: 10.4k ev/s</span>
           </div>
 
           <div className="status-chip" title="ONNX Isolation Forest + DistilBERT (FR-02)">
-            <Cpu size={14} color="var(--jh-slate)" />
+            <Cpu size={14} color="#FFFFFF" />
             <span>ONNX Runtime: 3.2ms</span>
           </div>
 
           <div className="status-chip" title="Qdrant Vector DB 384d Embeddings (FR-03)">
-            <Layers size={14} color="var(--text-secondary)" />
+            <Layers size={14} color="#FFFFFF" />
             <span>Qdrant RAG: Online</span>
           </div>
 
           <div className="status-chip" title="Ephemeral Docker Sandbox (--net=none) (FR-04)">
-            <Terminal size={14} color="var(--text-muted)" />
+            <Terminal size={14} color="#8E8E93" />
             <span>Sandbox: --net=none</span>
           </div>
         </div>
@@ -69,12 +54,11 @@ export default function Header({
           {/* Palette indicator pill */}
           <div 
             className="palette-preview-pill" 
-            title="Studio Palette: Charcoal (#1C1C1C), Canvas (#EAE6E0), Slate (#535366), White (#FFFFFF)"
+            title="Design Palette: Black (#000000), White (#FFFFFF), Dark Maroon (#660000)"
           >
-            <span className="palette-chip chip-charcoal" title="Charcoal #1C1C1C (Primary)"></span>
-            <span className="palette-chip chip-canvas" title="Canvas #EAE6E0 (Primary)"></span>
-            <span className="palette-chip chip-slate" title="Slate #535366 (Secondary)"></span>
-            <span className="palette-chip chip-white" title="White #FFFFFF (Secondary)"></span>
+            <span className="palette-chip" style={{ background: '#000000', borderColor: 'rgba(255,255,255,0.4)' }} title="Pitch Black #000000"></span>
+            <span className="palette-chip" style={{ background: '#FFFFFF', borderColor: 'rgba(255,255,255,0.8)' }} title="Pure White #FFFFFF"></span>
+            <span className="palette-chip" style={{ background: '#660000', borderColor: '#8B0000' }} title="Dark Maroon #660000"></span>
           </div>
 
           {/* Theme Switcher */}
@@ -137,7 +121,7 @@ export default function Header({
             <div className="kpi-target">Target: ≤ 15s (99.99% SLA)</div>
           </div>
           <div className="kpi-icon-wrap">
-            <Clock size={22} color="var(--text-primary)" />
+            <Clock size={22} color="#FFFFFF" />
           </div>
         </div>
 
@@ -148,7 +132,7 @@ export default function Header({
             <div className="kpi-target">Target: &lt; 3 min (Baseline: 45m)</div>
           </div>
           <div className="kpi-icon-wrap">
-            <Zap size={22} color="var(--jh-slate)" />
+            <Zap size={22} color="#FFFFFF" />
           </div>
         </div>
 
@@ -159,7 +143,7 @@ export default function Header({
             <div className="kpi-target">Target: &gt; 94% (Isolation Forest)</div>
           </div>
           <div className="kpi-icon-wrap">
-            <Activity size={22} color="var(--text-secondary)" />
+            <Activity size={22} color="#FFFFFF" />
           </div>
         </div>
 
@@ -170,7 +154,7 @@ export default function Header({
             <div className="kpi-target">100% Tested Live Execution</div>
           </div>
           <div className="kpi-icon-wrap">
-            <CheckCircle2 size={22} color="var(--text-muted)" />
+            <CheckCircle2 size={22} color="#FFFFFF" />
           </div>
         </div>
       </div>

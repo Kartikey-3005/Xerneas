@@ -43,9 +43,8 @@ export default function SandboxGuardrailSection() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight font-exo mb-6">
           The AST Guardrail &amp; Zero-Trust Sandbox
         </h2>
-        <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-8">
-          Unrestricted AI agents hallucinate dangerous commands. Xerneas parses Bash Abstract Syntax Trees and mandates containerized pre-execution validation with zero blast radius.
-        </p>
+        <br></br>
+        <br></br>
 
         {/* Preset Selector Chips with Clear Separation */}
         <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
@@ -66,6 +65,8 @@ export default function SandboxGuardrailSection() {
             </button>
           ))}
         </div>
+        <br></br>
+        <br></br>
       </div>
 
       {/* ── Split-Screen Demonstration with Substantial Spacing ── */}
